@@ -1,0 +1,20 @@
+.page {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 80px;
+  position: relative;
+  top: -2px;
+}
+.productList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 36px;
+  row-gap: 70px;
+  padding-top: 103px;
+}
+.category-title {
+  font-size: 42px;
+  line-height: 160%;
+  text-transform: capitalize;
+  margin-top: 2px;
+}

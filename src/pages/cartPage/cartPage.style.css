@@ -1,0 +1,57 @@
+.separator {
+  width: 1240px;
+  height: 1px;
+  background: #e5e5e5;
+}
+.cart-footer {
+  text-align: left;
+}
+.cart-footer__button .button {
+  width: 279px;
+  height: 43px;
+  font-size: 14px;
+  line-height: 120%;
+}
+.cart-title {
+  font-size: 32px;
+  line-height: 40px;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 55px;
+}
+.orderList .separator {
+  margin-top: 24px;
+}
+.cart-footer__title.font-raleway400 {
+  font-size: 24px;
+  line-height: 28px;
+}
+.cart-footer__value {
+  font-size: 24px;
+  line-height: 24px;
+}
+.cart-tax {
+  margin-top: 32px;
+}
+.cart-tax .cart-footer__value {
+  margin-left: 17px;
+}
+.cart-quantity {
+  margin-top: 8px;
+}
+.cart-quantity .cart-footer__value {
+  margin-left: 7px;
+}
+.cart-total {
+  margin-top: 7px;
+}
+.cart-total .cart-footer__title {
+  font-size: 24px;
+  line-height: 28px;
+}
+.cart-total .cart-footer__value {
+  margin-left: 45px;
+}
+.cart-footer__button {
+  margin-top: 17px;
+}

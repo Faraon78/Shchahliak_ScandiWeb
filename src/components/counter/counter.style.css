@@ -1,0 +1,35 @@
+.cart-counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.count-sign {
+  cursor: pointer;
+}
+.count-sign img {
+  box-sizing: border-box;
+}
+.orderList .cart-counter {
+  height: 288px;
+  margin-top: 24px;
+}
+.orderList .count-sign,
+.orderList .count-sign img {
+  width: 45px;
+  height: 45px;
+}
+.orderList .count-value {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 160%;
+}
+.cart-overlay-list .cart-counter {
+  height: 190px;
+}
+.cart-overlay-list .count-sign,
+.cart-overlay-list .count-sign img {
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,9 @@
+.navigate {
+  display: flex;
+  align-items: center;
+  flex-grow: 0;
+}
+a.navigate-link div.navigate-link {
+  cursor: pointer;
+  text-decoration: none;
+}

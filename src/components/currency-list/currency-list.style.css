@@ -1,0 +1,10 @@
+.currency-list {
+  position: absolute;
+  width: 114px;
+  top: 35px;
+  right: -24px;
+  padding-top: 20px;
+  box-shadow: 0px 4px 35px var(--c-shadow);
+  z-index: 1000;
+  background-color: var(--c-white);
+}

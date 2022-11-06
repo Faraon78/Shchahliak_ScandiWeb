@@ -1,0 +1,46 @@
+.cart-overlay-box {
+  padding: 32px 16px;
+  position: absolute;
+  width: 293px;
+  background-color: var(--c-white);
+  z-index: 10;
+  top: 78px;
+  right: 72px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.cart-overlay-title {
+  text-align: left;
+  color: var(--c-text);
+  margin-top: 4px;
+  margin-bottom: 35px;
+}
+.cart-title-count {
+  padding-left: 5px;
+}
+.cart-overlay-total {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-end;
+  height: 26px;
+}
+.cart-overlay-button {
+  margin-top: 34px;
+}
+.cart-overlay-button .button {
+  width: 140px;
+  height: 43px;
+  font-size: 14px;
+  line-height: 120%;
+  cursor: pointer;
+}
+
+.cart-overlay-button {
+  display: flex;
+  gap: 12px;
+}
+.cart-overlay-total .total-sum {
+  font-size: 16px;
+  line-height: 160%;
+}

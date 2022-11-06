@@ -1,0 +1,13 @@
+.gallery-item {
+  width: 78px;
+  height: 79px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product-gallery-container {
+  border: 1px solid var(--c-primary);
+  margin-bottom: 39px;
+  cursor: pointer;
+  box-sizing: border-box;
+}

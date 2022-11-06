@@ -1,0 +1,39 @@
+.icon-button {
+  display: flex;
+  align-items: center;
+  width: 232px;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+  position: relative;
+}
+.icon-button__currency {
+  cursor: pointer;
+  padding-left: 2px;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 3px;
+}
+.icon-button__currency__text {
+  padding-left: 3px;
+}
+.icon-button__currency__arrow {
+  padding-left: 11px;
+}
+.icon-button__cart {
+  padding-left: 19px;
+  cursor: pointer;
+  position: relative;
+}
+.cart-counter__box {
+  width: 20px;
+  height: 20px;
+  border-radius: 60px;
+  background-color: var(--c-text);
+  color: var(--c-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -9px;
+  left: 32px;
+}

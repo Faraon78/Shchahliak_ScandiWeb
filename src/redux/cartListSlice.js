@@ -7,57 +7,51 @@ export const cartListSlice = createSlice({
   },
   reducers: {
     addToCartList: (state, action) => {
-      if (state.cartList.length > 0) {
-        let index = state.cartList.findIndex(
-          (item) => item.product.name === action.payload.product.name
-        );
-        if (index > -1) {
-          if (
-            JSON.stringify(state.cartList[index].setAttributes) ===
-            JSON.stringify(action.payload.setAttributes)
-          ) {
-            const copy1 = JSON.parse(JSON.stringify(state.cartList[index]));
-            copy1.count += 1;
-            const newState = [
-              ...state.cartList.slice(0, index),
-              copy1,
-              ...state.cartList.slice(index + 1),
-            ];
-            localStorage.setItem('Scandicart', JSON.stringify(newState));
-            return (state = {
-              ...state,
-              cartList: newState,
-            });
-          } else {
-            localStorage.setItem(
-              'Scandicart',
-              JSON.stringify([...state.cartList, action.payload])
-            );
-            return (state = {
-              ...state,
-              cartList: [...state.cartList, action.payload],
-            });
-          }
-        } else {
-          localStorage.setItem(
-            'Scandicart',
-            JSON.stringify([...state.cartList, action.payload])
-          );
-          return (state = {
-            ...state,
-            cartList: [...state.cartList, action.payload],
-          });
-        }
-      } else {
-        localStorage.setItem(
-          'Scandicart',
-          JSON.stringify([...state.cartList, action.payload])
-        );
+      const updateLocalStorage = (newCartListState) => {
+        localStorage.setItem('Scandicart', JSON.stringify(newCartListState));
+      };
+      if (state.cartList.length === 0) {
+        updateLocalStorage([action.payload]);
         return (state = {
           ...state,
-          cartList: [...state.cartList, action.payload],
+          cartList: [action.payload],
         });
       }
+      let index = state.cartList.findIndex(
+        (item) => item.product.name === action.payload.product.name
+      );
+      if (index === -1) {
+        const newCartListState = [...state.cartList, action.payload];
+        updateLocalStorage(newCartListState);
+        return (state = {
+          ...state,
+          cartList: newCartListState,
+        });
+      }
+      for (let i = index; i < state.cartList.length; i++) {
+        if (
+          JSON.stringify(state.cartList[i].setAttributes) ===
+          JSON.stringify(action.payload.setAttributes)
+        ) {
+          const copy = JSON.parse(JSON.stringify(state.cartList[i]));
+          copy.count += 1;
+          const newCartListState = [
+            ...state.cartList.slice(0, i),
+            copy,
+            ...state.cartList.slice(i + 1),
+          ];
+          updateLocalStorage(newCartListState);
+          return (state = {
+            ...state,
+            cartList: newCartListState,
+          });
+        }
+      }
+      updateLocalStorage([...state.cartList, action.payload]);
+      return (state = {
+        ...state,
+        cartList: [...state.cartList, action.payload],
+      });
     },
 
     deleteFromCartList: (state, action) => {

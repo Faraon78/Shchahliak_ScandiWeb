@@ -19,7 +19,7 @@ class CurrencyItem extends React.PureComponent {
         symbol: this.props.currency.symbol,
         label: this.props.currency.label,
       })
-    );    
+    );
   };
 
   render() {

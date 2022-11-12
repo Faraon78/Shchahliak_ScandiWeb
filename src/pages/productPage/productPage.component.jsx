@@ -1,12 +1,10 @@
 import React from 'react';
 import { withRouter } from '../../components/withRouter';
 import { connect } from 'react-redux';
-import Header from '../../components/header/header.component';
 import ProductGallery from '../../components/product-gallery/product-gallery.component';
 import AttributePanel from '../../components/attribute-panel/attribute-panel.component';
 import PriceValue from '../../components/price-value/price-value.component';
 import Button from '../../components/button/button.component';
-import PageShadowLayot from '../../components/pageShadow-layot/pageShadow-layot.component';
 import { addToCartList } from '../../redux/cartListSlice';
 import './productPage.style.css';
 
@@ -59,7 +57,7 @@ class ProductPage extends React.Component {
 
   render() {
     const { params } = this.props.router;
-    const { categories, isOpenCartOverlay } = this.props;
+    const { categories } = this.props;
     const currencyCategory = categories.find(
       (item) => item.name === params.category
     );
@@ -89,53 +87,44 @@ class ProductPage extends React.Component {
       : 'button  button-disable';
 
     return (
-      <>
-        <Header />
-        <div className="page">
-          {isOpenCartOverlay && <PageShadowLayot />}
-          <div className="product-page-container">
-            <div className="product-page__gallery-list">{productGallery}</div>
-            <div className="product-page__preview-container">
-              <div
-                className="product-page__preview"
-                style={{
-                  backgroundImage: `url(${previewUrl})`,
-                }}
-              ></div>
-            </div>
-            <div className="product-page__information">
-              <h3 className="h3-text-font font-raleway600">{product.brand}</h3>
-              <div className="product-name font-raleway400">{product.name}</div>
-              <div className="attributes">{attributePanel}</div>
-              <h5 className="attribute-title  attribute-title__price">
-                price:
-              </h5>
-              <PriceValue prices={product.prices} />
-              <Button
-                title={buttonTitle}
-                className={buttonClassName}
-                onClick={
-                  product.inStock ? (e) => this.addToCart(product) : undefined
-                }
-              />
-              <div
-                className="product-description"
-                dangerouslySetInnerHTML={{
-                  __html: product.description,
-                }}
-              ></div>
-            </div>
-          </div>
+      <div className="product-page-container">
+        <div className="product-page__gallery-list">{productGallery}</div>
+        <div className="product-page__preview-container">
+          <div
+            className="product-page__preview"
+            style={{
+              backgroundImage: `url(${previewUrl})`,
+            }}
+          ></div>
         </div>
-      </>
+        <div className="product-page__information">
+          <h3 className="h3-text-font font-raleway600">{product.brand}</h3>
+          <div className="product-name font-raleway400">{product.name}</div>
+          <div className="attributes">{attributePanel}</div>
+          <h5 className="attribute-title  attribute-title__price">price:</h5>
+          <PriceValue prices={product.prices} />
+          <Button
+            title={buttonTitle}
+            className={buttonClassName}
+            onClick={
+              product.inStock ? (e) => this.addToCart(product) : undefined
+            }
+          />
+          <div
+            className="product-description"
+            dangerouslySetInnerHTML={{
+              __html: product.description,
+            }}
+          ></div>
+        </div>
+      </div>
     );
   }
 }
 function mapStateToProps(state) {
-  const { categoryList, isOpenCartOverlay } = state;
+  const { categoryList } = state;
   return {
     categories: categoryList.categoryList,
-    isOpenCartOverlay: isOpenCartOverlay.isOpenCartOverlay,
   };
 }
 

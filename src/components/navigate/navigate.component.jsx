@@ -10,7 +10,7 @@ class Navigate extends React.PureComponent {
       <NavigateItem
         className={
           item.name === selectedCategory
-            ? 'navigate-link navigate-link__selected'
+            ? 'navigate-link active'
             : 'navigate-link'
         }
         key={item.name}

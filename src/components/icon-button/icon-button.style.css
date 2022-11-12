@@ -3,7 +3,7 @@
   align-items: center;
   width: 232px;
   justify-content: flex-end;
-  margin-bottom: 24px;
+  margin-bottom: 23px;
   position: relative;
 }
 .icon-button__currency {
@@ -15,9 +15,11 @@
 }
 .icon-button__currency__text {
   padding-left: 3px;
+  font-size: 18px;
 }
 .icon-button__currency__arrow {
-  padding-left: 11px;
+  padding-left: 10px;
+  padding-right: 1px;
 }
 .icon-button__cart {
   padding-left: 19px;

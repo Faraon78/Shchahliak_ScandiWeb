@@ -1,6 +1,7 @@
 import React from 'react';
 import AttributeItemText from '../attributeText-item/attributeText-item.component';
 import './attribute-panel.style.css';
+import './attribute-panel.style.scss';
 
 class AttributePanel extends React.PureComponent {
   constructor(props) {

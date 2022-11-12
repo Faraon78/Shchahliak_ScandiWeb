@@ -13,7 +13,8 @@
   font-weight: 400;
   font-size: 30px;
   line-height: 27px;
-  margin-top: 15px;
+  margin-top: 16px;
+  padding-left: 1px;
 }
 .orderList .cart-product__brand {
   font-family: 'Raleway';
@@ -21,7 +22,8 @@
   font-weight: 600;
   font-size: 30px;
   line-height: 27px;
-  margin-top: 25px;
+  margin-top: 24px;
+  padding-left: 1px;
 }
 .orderList .product-price {
   font-family: 'Raleway';
@@ -29,7 +31,8 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 24px;
-  margin-top: 19px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 div.product-title {
   color: var(--c-text);

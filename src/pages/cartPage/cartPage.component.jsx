@@ -1,9 +1,7 @@
 import React from 'react';
 import { withRouter } from '../../components/withRouter';
 import { connect } from 'react-redux';
-import Header from '../../components/header/header.component';
 import CartProduct from '../../components/cart-product/cart-product.component';
-import PageShadowLayot from '../../components/pageShadow-layot/pageShadow-layot.component';
 import { checkOutCartList } from '../../redux/cartListSlice';
 import Button from '../../components/button/button.component';
 
@@ -15,7 +13,8 @@ class CartPage extends React.Component {
     alert('Thank you for your order!');
   };
   render() {
-    const { cartList, selectedCurrency, isOpenCartOverlay } = this.props;
+    const { cartList, selectedCurrency } = this.props;
+
     let counter = 0;
     cartList.forEach((item) => (counter += item.count));
     let totalSum = 0;
@@ -27,7 +26,9 @@ class CartPage extends React.Component {
     });
     totalSum = +totalSum.toFixed(2);
     const tax = (totalSum * 0.21).toFixed(2);
+
     const separator = <div className="separator" />;
+
     const cartItem = cartList.map((item) => (
       <div key={item.id}>
         <CartProduct product={item} withCarusel={true} />
@@ -36,59 +37,52 @@ class CartPage extends React.Component {
     ));
 
     return (
-      <div>
-        <Header />
-        <div className="orderPage page">
-          {isOpenCartOverlay && <PageShadowLayot />}
-          <h2 className="cart-title font-raleway700">cart</h2>
-          {separator}
-          <div className="orderList">{cartItem}</div>
-          <div className="cart-footer">
-            <div className="cart-tax">
-              <span className="cart-footer__title font-raleway400">
-                Tax 21%:
-              </span>
-              <span className="cart-footer__value font-raleway700">
-                {selectedCurrency.symbol + tax}
-              </span>
-            </div>
-            <div className="cart-quantity">
-              <span className="cart-footer__title font-raleway400">
-                Quantity:
-              </span>
-              <span className="cart-footer__value font-raleway700">
-                {counter}
-              </span>
-            </div>
-            <div className="cart-total">
-              <span className="cart-footer__title font-raleway500">Total:</span>
-              <span className="cart-footer__value font-raleway700">
-                {selectedCurrency.symbol + totalSum}
-              </span>
-            </div>
-            <div className="cart-footer__button">
-              <Button
-                title="order"
-                className={
-                  cartList.length > 0
-                    ? 'button button-active'
-                    : 'button button-disable'
-                }
-                onClick={cartList.length > 0 ? this.createOrder : null}
-              />
-            </div>
+      <>
+        <h2 className="cart-title font-raleway700">cart</h2>
+        {separator}
+        <div className="orderList">{cartItem}</div>
+        <div className="cart-footer">
+          <div className="cart-tax">
+            <span className="cart-footer__title font-raleway400">Tax 21%:</span>
+            <span className="cart-footer__value font-raleway700">
+              {selectedCurrency.symbol + tax}
+            </span>
+          </div>
+          <div className="cart-quantity">
+            <span className="cart-footer__title font-raleway400">
+              Quantity:
+            </span>
+            <span className="cart-footer__value font-raleway700">
+              {counter}
+            </span>
+          </div>
+          <div className="cart-total">
+            <span className="cart-footer__title font-raleway500">Total:</span>
+            <span className="cart-footer__value font-raleway700">
+              {selectedCurrency.symbol + totalSum}
+            </span>
+          </div>
+          <div className="cart-footer__button">
+            <Button
+              title="order"
+              className={
+                cartList.length > 0
+                  ? 'button button-active'
+                  : 'button button-disable'
+              }
+              onClick={cartList.length > 0 ? this.createOrder : null}
+            />
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
 function mapStateToProps(state) {
-  const { cartList, selectedCurrency, isOpenCartOverlay } = state;
+  const { cartList, selectedCurrency } = state;
   return {
     cartList: cartList.cartList,
     selectedCurrency: selectedCurrency.selectedCurrency,
-    isOpenCartOverlay: isOpenCartOverlay.isOpenCartOverlay,
   };
 }
 

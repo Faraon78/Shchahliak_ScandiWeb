@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { switchCartOverlay } from '../../redux/isOpenCartOverlaySlice';
-import './pageShadow-layot.style.css';
+import './pageShadow-layout.style.css';
 
-class PageShadowLayot extends React.PureComponent {
+class PageShadowLayout extends React.PureComponent {
   closeCartOverlay = () => {
     this.props.dispatch(switchCartOverlay(false));
   };
@@ -13,4 +13,4 @@ class PageShadowLayot extends React.PureComponent {
   }
 }
 
-export default connect()(PageShadowLayot);
+export default connect()(PageShadowLayout);

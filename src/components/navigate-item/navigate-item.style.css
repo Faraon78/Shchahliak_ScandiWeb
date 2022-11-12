@@ -6,18 +6,17 @@
   line-height: 120%;
   padding-left: 16px;
   padding-right: 16px;
-  padding-bottom: 30px;
-  padding-top: 17px;
+  padding-bottom: 31px;
+  padding-top: 14px;
   color: var(--c-text);
 }
-.navigate-link-text:focus,
-.navigate-link__selected > .navigate-link-text {
+.active .navigate-link-text {
   color: var(--c-primary);
   font-weight: 600;
 }
 .navigate-link-underline {
   height: 2px;
 }
-.navigate-link__selected > .navigate-link-underline {
+.active .navigate-link-underline {
   background-color: var(--c-primary);
 }

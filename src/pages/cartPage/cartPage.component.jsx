@@ -27,7 +27,7 @@ class CartPage extends React.Component {
     totalSum = +totalSum.toFixed(2);
     const tax = (totalSum * 0.21).toFixed(2);
 
-    const separator = <div className="separator" />;
+    const separator = <div className="separator"/>;
 
     const cartItem = cartList.map((item) => (
       <div key={item.id}>

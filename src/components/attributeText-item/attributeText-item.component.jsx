@@ -1,5 +1,4 @@
 import React from 'react';
-import './attributeText-item.style.css';
 
 class AttributeItemText extends React.PureComponent {
   cbSetAttribute = () => {

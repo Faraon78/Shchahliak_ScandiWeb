@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Header from '../header/header.component';
+import Header from '../../components/header/header.component';
 import PageShadowLayout from '../pageShadow-layout/pageShadow-layout.component';
 import { switchListCurrencies } from '../../redux/isOpenCurrenciesSlice';
 

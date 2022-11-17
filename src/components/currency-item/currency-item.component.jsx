@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { switchCurrency } from '../../redux/selectedCurrencySlice';
+import { switchCurrency, LOCAL_STORAGE_NAME_CURRENCY } from '../../redux/selectedCurrencySlice';
 import { switchListCurrencies } from '../../redux/isOpenCurrenciesSlice';
 import './currency-item.style.css';
 
@@ -14,7 +14,7 @@ class CurrencyItem extends React.PureComponent {
     );
     this.props.dispatch(switchListCurrencies(false));
     localStorage.setItem(
-      'Scandicurrency',
+      LOCAL_STORAGE_NAME_CURRENCY,
       JSON.stringify({
         symbol: this.props.currency.symbol,
         label: this.props.currency.label,

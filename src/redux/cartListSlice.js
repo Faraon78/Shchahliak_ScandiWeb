@@ -1,50 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const LOCAL_STORAGE_NAME='Scandicart';
+
 export const cartListSlice = createSlice({
   name: 'cartList',
   initialState: {
-    cartList: JSON.parse(localStorage.getItem('Scandicart')) || [],
+    cartList: JSON.parse(localStorage.getItem(LOCAL_STORAGE_NAME)) || [],
   },
   reducers: {
     addToCartList: (state, action) => {
       const updateLocalStorage = (newCartListState) => {
-        localStorage.setItem('Scandicart', JSON.stringify(newCartListState));
+        localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(newCartListState));
       };
+
       if (state.cartList.length === 0) {
         updateLocalStorage([action.payload]);
-        return (state = {
-          ...state,
-          cartList: [action.payload],
-        });
+        state.cartList= [action.payload];
+        return state        
       }
+
       let index = state.cartList.findIndex(
         (item) => item.product.name === action.payload.product.name
       );
+
       if (index === -1) {
-        const newCartListState = [...state.cartList, action.payload];
-        updateLocalStorage(newCartListState);
-        return (state = {
-          ...state,
-          cartList: newCartListState,
-        });
+        state.cartList = [...state.cartList, action.payload];
+        updateLocalStorage(state.cartList);
+        return state        
       }
+
       for (let i = index; i < state.cartList.length; i++) {
         if (
           JSON.stringify(state.cartList[i].setAttributes) ===
           JSON.stringify(action.payload.setAttributes)
         ) {
-          const copy = JSON.parse(JSON.stringify(state.cartList[i]));
-          copy.count += 1;
-          const newCartListState = [
-            ...state.cartList.slice(0, i),
-            copy,
-            ...state.cartList.slice(i + 1),
-          ];
-          updateLocalStorage(newCartListState);
-          return (state = {
-            ...state,
-            cartList: newCartListState,
-          });
+          state.cartList[i].count +=1
+          updateLocalStorage(state.cartList);
+          return state          
         }
       }
       updateLocalStorage([...state.cartList, action.payload]);
@@ -55,44 +47,24 @@ export const cartListSlice = createSlice({
     },
 
     deleteFromCartList: (state, action) => {
-      let index = state.cartList.findIndex(
-        (item) => item.id === action.payload
-      );
-      const newState = [
-        ...state.cartList.slice(0, index),
-        ...state.cartList.slice(index + 1),
-      ];
-      localStorage.setItem('Scandicart', JSON.stringify(newState));
-      return (state = {
-        ...state,
-        cartList: newState,
-      });
+      state.cartList = state.cartList.filter(item =>item.id !== action.payload);      
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(state.cartList));
+      return state
     },
 
     checkOutCartList: (state, action) => {
-      localStorage.removeItem('Scandicart');
-      return (state = {
-        ...state,
-        cartList: [],
-      });
+      localStorage.removeItem(LOCAL_STORAGE_NAME);
+      state.cartList = [];
+      return state;      
     },
 
     updateCountInCartList: (state, action) => {
       let index = state.cartList.findIndex(
         (item) => item.id === action.payload.id
       );
-      const copy = JSON.parse(JSON.stringify(state.cartList[index]));
-      copy.count = action.payload.count;
-      const newState = [
-        ...state.cartList.slice(0, index),
-        copy,
-        ...state.cartList.slice(index + 1),
-      ];
-      localStorage.setItem('Scandicart', JSON.stringify(newState));
-      return (state = {
-        ...state,
-        cartList: newState,
-      });
+      state.cartList[index].count =action.payload.count;      
+      localStorage.setItem(LOCAL_STORAGE_NAME, JSON.stringify(state.cartList));
+      return state
     },
   },
 });

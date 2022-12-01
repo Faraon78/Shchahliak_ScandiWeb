@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+import { switchCartOverlay } from '../../redux/isOpenCartOverlaySlice';
 import Cartbutton from '../../components/cart-button/cart-button.component';
 import CartOverlay from '../../components/cart-overlay/cart-overlay.component';
 import Iconbutton from '../../components/icon-button/icon-button.component';
 import Navigate from '../../components/navigate/navigate.component';
-import { withRouter } from '../../components/withRouter';
-import { switchCartOverlay } from '../../redux/isOpenCartOverlaySlice';
+
 import './header.style.css';
 
 class Header extends React.Component {
@@ -15,13 +16,10 @@ class Header extends React.Component {
     }
   };
   render() {
-    const { params } = this.props.router;
     const { isOpenCartOverlay } = this.props;
-    const selectedCategory = !params.category ? 'all' : params.category;
-
     return (
       <div className="header" onClick={this.closeCartOverlay}>
-        <Navigate selectedCategory={selectedCategory} />
+        <Navigate />
         <Cartbutton />
         <Iconbutton />
         {isOpenCartOverlay && <CartOverlay />}
@@ -36,4 +34,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(Header));
+export default connect(mapStateToProps)(Header);

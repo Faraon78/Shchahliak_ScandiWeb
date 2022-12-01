@@ -1,35 +1,81 @@
 import React from 'react';
 import { withRouter } from '../../components/withRouter';
-import { connect } from 'react-redux';
+import { client } from './../../apollo/config';
+import { GET_CATEGORY, GET_CATEGORIES } from './../../apollo/queries';
 import Product from '../../components/product/product.component';
 import './categoryPage.style.css';
 
 class CategoryPage extends React.Component {
-  render() {
-    const { params } = this.props.router;
-    const { categories } = this.props;
-    const selectedCategory = !params.category ? 'all' : params.category;
-    const currentCategoryList = categories.find(
-      (item) => item.name === selectedCategory
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: [],
+      products: [],
+      selectedCategory: '',
+    };
+  }
+  componentDidMount = async () => {
+    try {
+      const responseCategories = await client.query({
+        query: GET_CATEGORIES,
+      });
+      if (responseCategories.data) {
+        this.setState({
+          categories: responseCategories.data.categories,
+        });
+      }
+      await this.updateCategoryListWithRouter(
+        responseCategories.data.categories[0].name
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  updateCategoryListWithRouter = async (category) => {
+    try {
+      const selectedCategory = !this.props.router.params.category
+        ? category
+        : this.props.router.params.category;
+      const responseCategoryList = await client.query({
+        query: GET_CATEGORY,
+        variables: {
+          input: {
+            title: selectedCategory,
+          },
+        },
+      });
 
-    const productItem = currentCategoryList.products.map((item) => (
-      <Product key={item.name} product={item} />
+      if (responseCategoryList.data) {
+        this.setState({
+          products: responseCategoryList.data.category.products,
+          selectedCategory: selectedCategory,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.router.params.category !== prevProps.router.params.category
+    ) {
+      this.updateCategoryListWithRouter(this.state.categories[0].name);
+    }
+  }
+  render() {
+    const productItem = this.state.products.map((item) => (
+      <Product key={item.id} product={item} />
     ));
 
     return (
       <>
-        <h2 className="font-raleway400 category-title">{selectedCategory}</h2>
+        <h2 className="font-raleway400 category-title">
+          {this.state.selectedCategory}
+        </h2>
         <div className="productList">{productItem}</div>
       </>
     );
   }
 }
-function mapStateToProps(state) {
-  const { categoryList } = state;
-  return {
-    categories: categoryList.categoryList,
-  };
-}
 
-export default withRouter(connect(mapStateToProps)(CategoryPage));
+export default withRouter(CategoryPage);

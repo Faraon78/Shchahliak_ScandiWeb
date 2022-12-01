@@ -12,7 +12,7 @@ class AttributePanel extends React.PureComponent {
   }
   setAttributes = (displayValue) => {
     this.setState({ attributeSet: displayValue });
-    this.props.setAttributesToCart(this.props.item.name, displayValue);
+    this.props.setAttributesToCart(this.props.item.id, displayValue);
   };
   setColor = (displayValue) => {
     this.setState({ attributeSet: displayValue });
@@ -42,19 +42,18 @@ class AttributePanel extends React.PureComponent {
         <div
           className={
             attr.displayValue === this.state.attributeSet
-              ? 'attribute-item__colorbox attribute-colorbox__selected'
-              : 'attribute-item__colorbox'
+              ? 'attribute-item__swatch attribute-swatch__selected'
+              : attr.displayValue === 'White'
+              ? 'attribute-item__swatch swatch__white'
+              : 'attribute-item__swatch'
           }
+          style={{ backgroundColor: `${attr.value}` }}
+          title={attr.displayValue}
           key={attr.displayValue}
           onClick={
             isChange ? (e) => this.setColor(attr.displayValue, e) : undefined
           }
-        >
-          <div
-            className="attribute-item__swatch"
-            style={{ backgroundColor: `${attr.value}` }}
-          />
-        </div>
+        />
       ));
     }
 

@@ -7,9 +7,10 @@ class PriceValue extends React.PureComponent {
     const price = prices.find(
       (item) => item.currency.label === selectedCurrency.label
     );
+    const displayAmount = price.amount.toFixed(2);
     return (
       <div className="product-price">
-        {selectedCurrency.symbol + price.amount}
+        {selectedCurrency.symbol + displayAmount}
       </div>
     );
   }

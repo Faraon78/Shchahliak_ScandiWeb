@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { switchCurrency, LOCAL_STORAGE_NAME_CURRENCY } from '../../redux/selectedCurrencySlice';
+import {
+  switchCurrency,
+  LOCAL_STORAGE_NAME_CURRENCY,
+} from '../../redux/selectedCurrencySlice';
 import { switchListCurrencies } from '../../redux/isOpenCurrenciesSlice';
 import './currency-item.style.css';
 
@@ -23,12 +26,10 @@ class CurrencyItem extends React.PureComponent {
   };
 
   render() {
+    const { className, currency } = this.props;
     return (
-      <div
-        className="currency-item font-raleway500"
-        onClick={this.handlerSelectCurrency}
-      >
-        {this.props.currency.symbol} {this.props.currency.label}
+      <div className={className} onClick={this.handlerSelectCurrency}>
+        {currency.symbol} {currency.label}
       </div>
     );
   }

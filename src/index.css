@@ -1,9 +1,11 @@
 html {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
+  height: max-content;
 }
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -62,7 +62,10 @@ class Iconbutton extends React.Component {
           ) : undefined}
         </div>
         {isOpenListCurrencies && (
-          <CurrencyList currencies={this.state.currencies} />
+          <CurrencyList
+            currencies={this.state.currencies}
+            selectedCurrency={selectedCurrency}
+          />
         )}
       </div>
     );

@@ -5,7 +5,7 @@
   background-color: var(--c-white);
   z-index: 10;
   top: 78px;
-  right: 72px;
+  right: -28px;
   max-height: 70vh;
   overflow-y: auto;
 }

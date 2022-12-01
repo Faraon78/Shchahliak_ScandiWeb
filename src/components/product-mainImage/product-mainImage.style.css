@@ -1,0 +1,22 @@
+.product-image {
+  box-sizing: border-box;
+  width: 354px;
+  height: 332px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.label-stock.font-raleway400 {
+  text-align: center;
+}
+.product-page__preview-container .product-image {
+  margin-top: 1px;
+  width: 608px;
+  height: 510px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.product-page__outStock .product-image {
+  opacity: 0.5;
+}

@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 import './navigate-item.style.css';
 
 class NavigateItem extends React.PureComponent {
   render() {
-    const {value, className} = this.props;
+    const { value, className } = this.props;
     return (
       <NavLink to={`/${value}`}>
         <div className={className}>
@@ -17,4 +16,4 @@ class NavigateItem extends React.PureComponent {
   }
 }
 
-export default connect()(NavigateItem);
+export default NavigateItem;

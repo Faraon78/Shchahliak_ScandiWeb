@@ -10,15 +10,7 @@ a {
 .product:hover {
   box-shadow: 0px 4px 35px var(--c-shadow);
 }
-.product-image {
-  box-sizing: border-box;
-  width: 354px;
-  height: 332px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 2px solid var(--c-primary);
-}
+
 .product-title,
 .product-price {
   text-align: left;
@@ -37,9 +29,7 @@ a {
   color: #8d8f9a;
   text-align: center;
 }
-.label-stock.font-raleway400 {
-  text-align: center;
-}
+
 .product.product-stock {
   opacity: 0.5;
 }

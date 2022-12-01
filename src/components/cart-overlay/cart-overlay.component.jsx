@@ -16,6 +16,9 @@ class CartOverlay extends React.Component {
   closeCartOverlay = () => {
     this.props.dispatch(switchCartOverlay(false));
   };
+  noCloseCartOverlay = (e) => {
+    e.stopPropagation();
+  };
 
   render() {
     const { cartList, selectedCurrency } = this.props;
@@ -31,9 +34,9 @@ class CartOverlay extends React.Component {
       );
       totalSum += price.amount * item.count;
     });
-    totalSum = +totalSum.toFixed(2);
+    totalSum = totalSum.toFixed(2);
     return (
-      <div className="cart-overlay-box">
+      <div className="cart-overlay-box" onClick={this.noCloseCartOverlay}>
         <div className="cart-overlay-title font-raleway700">
           My Bag,
           <span className="cart-title-count font-raleway500">

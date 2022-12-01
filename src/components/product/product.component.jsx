@@ -1,46 +1,59 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { client } from './../../apollo/config';
+import { GET_PRODUCT } from './../../apollo/queries';
 import { Link } from 'react-router-dom';
 import PriceValue from '../price-value/price-value.component';
+import ProductMainImage from '../product-mainImage/product-mainImage.component';
 import { addToCartList } from '../../redux/cartListSlice';
 import './product.style.css';
 
 class Product extends React.Component {
-  addToCart = (e) => {
+  addToCart = async (e) => {
     e.preventDefault();
+    const productForCart = await this.downloadProductForCart();
     let setAttributes = {};
-    const id = Date.now();
-    this.props.product.attributes.forEach((item) => {
-      setAttributes[item.name] = item.items[0].displayValue;
+    const idToCart = Date.now();
+    productForCart.attributes.forEach((item) => {
+      setAttributes[item.id] = item.items[0].displayValue;
     });
+    console.log(setAttributes);
     const itemToOrder = {
-      product: this.props.product,
+      product: productForCart,
       setAttributes: setAttributes,
       count: 1,
-      id: id,
+      id: idToCart,
     };
     this.props.dispatch(addToCartList(itemToOrder));
   };
+  downloadProductForCart = async () => {
+    try {
+      const responseProduct = await client.query({
+        query: GET_PRODUCT,
+        variables: {
+          id: this.props.product.id,
+        },
+      });
+      const productForCart = responseProduct.data.product;
+      return productForCart;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   render() {
     const { product } = this.props;
-
     return (
-      <Link to={`/${product.category}/${product.name}`}>
+      <Link to={`/${product.category}/${product.id}`}>
         <div
           className={
             product.inStock === false ? 'product product-stock' : 'product'
           }
         >
-          <div
-            className="product-image"
-            style={{
-              backgroundImage: `url(${product.gallery[0]})`,
-            }}
-          >
-            {!product.inStock && (
-              <div className="label-stock font-raleway400">OUT OF STOCK</div>
-            )}
-          </div>
+          <ProductMainImage
+            image={product.gallery[0]}
+            inStock={product.inStock}
+          />
+
           {product.inStock && (
             <div className="product__cart-label" onClick={this.addToCart}></div>
           )}

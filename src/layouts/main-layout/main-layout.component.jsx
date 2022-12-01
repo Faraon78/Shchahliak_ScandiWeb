@@ -15,11 +15,12 @@ class MainLayout extends React.Component {
   };
   render() {
     const { isOpenCartOverlay } = this.props;
+
     return (
       <div className="app" onClick={this.handlerCurrencyOpen}>
+        {isOpenCartOverlay && <PageShadowLayout />}
         <Header />
         <div className="page">
-          {isOpenCartOverlay && <PageShadowLayout />}
           <Outlet />
         </div>
       </div>

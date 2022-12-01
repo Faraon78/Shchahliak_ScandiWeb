@@ -27,15 +27,7 @@
   margin-bottom: 8px;
   text-transform: uppercase;
 }
-.attribute-item__colorbox {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-sizing: border-box;
-  border: 1px solid white;
-}
-.attribute-colorbox__selected {
-  border: 1px solid var(--c-primary);
+.attribute-swatch__selected {
+  outline: thin solid var(--c-primary);
+  outline-offset: 1px;
 }

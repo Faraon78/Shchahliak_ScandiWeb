@@ -4,15 +4,7 @@
   column-gap: 39px;
   margin-top: 2px;
 }
-.product-page__preview {
-  margin-top: 1px;
-  width: 608px;
-  height: 510px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid var(--c-primary);
-}
+
 .product-page-container .h3-text-font {
   font-size: 30px;
   line-height: 27px;
@@ -48,21 +40,7 @@
   font-size: 16px;
   line-height: 120%;
 }
-.product-description {
-  margin-top: 37px;
-  text-align: left;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 156.96%;
-  color: var(--c-text);
-  width: 292px;
-  height: 400px;
-}
-.product-description p {
-  padding-top: 10px;
-}
+
 .product-page__information {
   margin-left: 57px;
 }

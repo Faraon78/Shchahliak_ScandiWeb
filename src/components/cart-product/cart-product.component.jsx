@@ -12,7 +12,7 @@ class CartProduct extends React.Component {
     const { product, withCarusel } = this.props;
     const attributePanel = product.product.attributes.map((item) => (
       <AttributePanel
-        key={item.name}
+        key={item.id}
         item={item}
         attributeSet={product.setAttributes[item.name]}
         isChange={false}
@@ -29,7 +29,7 @@ class CartProduct extends React.Component {
       <div className="cart-product__wrapper">
         <div className="cart-product__details">
           <div className="cart-product__brand">{product.product.brand}</div>
-          <Link to={`/${product.product.category}/${product.product.name}`}>
+          <Link to={`/${product.product.category}/${product.product.id}`}>
             <div className="product-title">{product.product.name}</div>
           </Link>
           <PriceValue prices={product.product.prices} />

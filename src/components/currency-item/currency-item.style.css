@@ -1,9 +1,20 @@
 .currency-item {
-  height: 50px;
+  height: 45px;
+  align-items: center;
   cursor: pointer;
   text-align: left;
   padding-left: 21px;
+  display: flex;
 }
-.currency-item:hover {
+.currency-item:first-child {
+  height: 54px;
+  padding-top: 7px;
+}
+.currency-item__selected {
   background-color: var(--c-hover);
+}
+
+.currency-item:last-child {
+  height: 47px;
+  padding-bottom: 13px;
 }
